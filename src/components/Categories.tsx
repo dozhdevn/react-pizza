@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { useSelector, useDispatch } from 'react-redux'
-import { setCategory } from '../store/filter/slice'
+import { setCategory } from '../store/Filter'
+import { selectFilter } from '../store/Filter/selector';
 
 const categories = ['Все', 'Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']
 
-export const Categories = () => {
+export const Categories: React.FC = memo( (): React.ReactElement => {
   const dispatch = useDispatch()
-  const { category: categoryProp } = useSelector(state => state.filter)
+  const { category: categoryProp } = useSelector(selectFilter)
 
-  const onChangeCategory = (id) => dispatch(setCategory(id))
+  const onChangeCategory = (id: number) => dispatch(setCategory(id))
 
   return (
     <div className="categories">
@@ -28,4 +29,5 @@ export const Categories = () => {
       </ul>
     </div>
   );
-};
+}
+)

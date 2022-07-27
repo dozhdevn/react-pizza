@@ -1,29 +1,36 @@
 import React, { useState, useEffect, useRef, memo } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { setSort } from '../store/filter/slice'
+import { setSort } from '../store/Filter'
+import { selectFilterSort } from '../store/Filter/selector';
+import { SortItem, SortName, sortProperty } from '../store/Filter/types';
 
-export const sortList = [
-  { name: 'популярности', sortProperty: 'rating' },
-  { name: 'цена', sortProperty: 'price' },
-  { name: 'алфавиту', sortProperty: 'title' }
+
+type PopupClick = MouseEvent & {
+  path: Node[];
+}
+
+export const sortList: SortItem[] = [
+  { name: SortName.POPULAR, sortProperty: sortProperty.RATING },
+  { name: SortName.PRICE, sortProperty: sortProperty.PRICE},
+  { name: SortName.ALPHABET, sortProperty: sortProperty.TITLE }
 ]
 
-export const Sort = memo(() => {
+export const Sort: React.FC = memo(() => {
   const dispatch = useDispatch()
-  const sort = useSelector(state => state.filter.sort)
+  const sort = useSelector(selectFilterSort)
   const [visible, setVisible] = useState(false)
 
-  const sortRef = useRef()
+  const sortRef = useRef<HTMLDivElement>(null)
 
   const handleOpenPopup = () => setVisible(!visible)
 
-  const handleClickSort = (obj) => {
+  const handleClickSort = (obj: SortItem) => {
     dispatch(setSort(obj))
     setVisible(false)
   }
 
   useEffect(() => {
-    const handleClickOutside = (e) => {
+    const handleClickOutside = (e: any) => {
       if (!e.path.includes(sortRef.current)) {
         setVisible(false)
       }

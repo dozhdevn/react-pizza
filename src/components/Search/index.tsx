@@ -2,13 +2,13 @@ import React, { useState, useRef } from 'react'
 
 import styles from './Search.module.scss'
 
-export const Search = () => {
+export const Search:React.FC = () => {
   const [value, setValue] = useState('')
-  const inputRef = useRef()
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const onClearValue = () => {
     setValue('')
-    inputRef.current.focus()
+    inputRef.current?.focus()
   }
 
   return (
