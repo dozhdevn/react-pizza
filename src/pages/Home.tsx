@@ -17,8 +17,8 @@ export const Home: React.FC = () => {
   const { category, sort, currentPage } = useSelector(selectFilter)
 
   useEffect(() => {
-    dispatch(fetchPizzas({category, sort}))
-  }, [dispatch, category, sort])
+    dispatch(fetchPizzas({category, sort, currentPage}))
+  }, [dispatch, category, sort, currentPage])
 
   const pizzas = items.map(pizza =>
     <PizzaBlock
@@ -30,7 +30,7 @@ export const Home: React.FC = () => {
       types={pizza.types}
       price={pizza.price} />)
 
-  const skeleton = [...Array(9)].map((_, index) => <Skeleton key={index} />)
+  const skeletons = [...Array(4)].map((_, index) => <Skeleton key={index} />)
 
   return (
     <div className='contaner'>
@@ -42,7 +42,7 @@ export const Home: React.FC = () => {
       <div className="content__items">
         {
           loading
-            ? skeleton
+            ? skeletons
             : pizzas
         }
       </div>

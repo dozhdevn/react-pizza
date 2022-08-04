@@ -2,7 +2,7 @@ import { createSlice, Draft, PayloadAction } from "@reduxjs/toolkit";
 import { Pizza } from "./types";
 
 export interface PizzaItemState {
-  pizza?: Pizza
+  pizza: Pizza | undefined
   isLoading: boolean
   isError: boolean
 }
@@ -21,11 +21,11 @@ const pizzaItemSlice = createSlice({
       state.pizza = undefined
       state.isLoading = true
     },
-    fetchPizzaItemSuccess(state, action) {
+    fetchPizzaItemSuccess(state: Draft<PizzaItemState>, action: PayloadAction<Pizza>) {
       state.pizza = action.payload
       state.isLoading = false
     },
-    fetchPizzaItemError(state) {
+    fetchPizzaItemError(state: Draft<PizzaItemState>) {
       state.isLoading = false
       state.isError =  true
     }

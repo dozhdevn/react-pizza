@@ -4,18 +4,12 @@ import {
   getDefaultMiddleware
 } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
-import filter, { FilterState } from './Filter'
-import cart, { CartState } from './Cart'
-import pizzas, { PizzasItemState } from './Pizzas'
-import pizzaItem, { PizzaItemState } from './Pizza'
+import filter from './Filter'
+import cart from './Cart'
+import pizzas from './Pizzas'
+import pizzaItem from './Pizza'
 import { rootSaga } from "./rootSaga";
 
-export type AppState = {
-  filter: FilterState
-  cart: CartState
-  pizzas: PizzasItemState
-  pizzaItem: PizzaItemState
-}
 
 const sagaMiddleware = createSagaMiddleware()
 
@@ -30,5 +24,7 @@ export const store = configureStore({
   reducer,
   middleware: [...getDefaultMiddleware({ thunk: false }), sagaMiddleware]
 })
+
+export type AppState = ReturnType<typeof store.getState>
 
 sagaMiddleware.run(rootSaga)

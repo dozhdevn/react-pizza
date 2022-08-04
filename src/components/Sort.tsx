@@ -18,7 +18,7 @@ export const sortList: SortItem[] = [
 export const Sort: React.FC = memo(() => {
   const dispatch = useDispatch()
   const sort = useSelector(selectFilterSort)
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState<boolean>(false)
 
   const sortRef = useRef<HTMLDivElement>(null)
 
@@ -30,8 +30,9 @@ export const Sort: React.FC = memo(() => {
   }
 
   useEffect(() => {
-    const handleClickOutside = (e: any) => {
-      if (!e.path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as PopupClick
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setVisible(false)
       }
     }

@@ -17,7 +17,7 @@ const initialState: FilterState = {
 }
 
 const filterSlice = createSlice({
-  name: 'filter',
+  name: '@@filter',
   initialState,
   reducers: {
     setCategory(state: Draft<FilterState>, action: PayloadAction<number>) {
@@ -30,7 +30,6 @@ const filterSlice = createSlice({
       state.currentPage = action.payload
     },
     setFilters(state: Draft<FilterState>, action) {
-      console.log(action.payload)
       state.currentPage = Number(action.payload.currentPage);
       state.category = Number(action.payload.categoryId);
       state.sort = action.payload.sort

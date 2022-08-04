@@ -7,7 +7,7 @@ import { selectPizzaItem } from '../store/Pizza/selectors'
 
 export const FullPizza: React.FC = () => {
   const dispatch = useDispatch()
-  const { id } = useParams() as {id: string}
+  const { id } = useParams() as { id: string }
 
   const { pizza, isLoading, isError } = useSelector(selectPizzaItem)
 

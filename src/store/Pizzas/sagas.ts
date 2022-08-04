@@ -6,9 +6,9 @@ import { PizzasApi } from './pizzasApi'
 const PizzasRepo = new PizzasApi()
 
 function* fetchPizzasRequest({ payload }: ReturnType<typeof fetchPizzas>){
-  const { category, sort } = payload
+  const { category, sort, currentPage } = payload
   try {
-    const response: Pizza[] = yield call(PizzasRepo.fetchPizzas, category, sort.sortProperty)
+    const response: Pizza[] = yield call(PizzasRepo.fetchPizzas, category, sort.sortProperty, currentPage)
     yield put(fetchPizzasSuccess(response))
   } catch (error) {
     yield put(fetchPizzasError())

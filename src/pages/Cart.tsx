@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { CartEmpty } from '../components/CartEmpty'
@@ -15,7 +15,7 @@ export const Cart: React.FC = () => {
     dispatch(clearItems())
   }
 
-  if (!totalPrice) {
+  if (!items.length) {
     return <CartEmpty />
   }
 

@@ -21,7 +21,7 @@ const pizzasSlice = createSlice({
     fetchPizzas(state: Draft<PizzasItemState>, action: PayloadAction<Params>) {
       state.isLoading = true
     },
-    fetchPizzasSuccess(state: Draft<PizzasItemState>, action) {
+    fetchPizzasSuccess(state: Draft<PizzasItemState>, action: PayloadAction<Pizza[]>) {
       state.items = action.payload
       state.isLoading = false
     },

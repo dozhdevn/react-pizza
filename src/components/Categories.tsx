@@ -28,6 +28,6 @@ export const Categories: React.FC = memo( (): React.ReactElement => {
           )}
       </ul>
     </div>
-  );
+  )
 }
 )
