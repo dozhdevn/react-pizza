@@ -33,7 +33,7 @@ export const Home: React.FC = () => {
   const skeletons = [...Array(4)].map((_, index) => <Skeleton key={index} />)
 
   return (
-    <div className='contaner'>
+    <div className='container'>
       <div className="content__top">
         <Categories />
         <Sort />

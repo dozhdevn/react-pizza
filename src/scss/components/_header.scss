@@ -29,4 +29,15 @@
       color: #7b7b7b;
     }
   }
+
+  &__cart {
+    display: flex;
+    align-items: center;
+    &-logout {
+      margin-left: 25px;
+      svg {
+        fill: #fe5f1e
+      }
+    }
+  }
 }

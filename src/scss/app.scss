@@ -386,3 +386,24 @@ body {
     align-items: center;
   }
 }
+.login {
+  &__wrapper {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__form {
+    min-height: 15rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+  }
+  &__input {
+    margin-bottom: 15px;
+  }
+}

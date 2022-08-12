@@ -8,6 +8,7 @@ import filter from './Filter'
 import cart from './Cart'
 import pizzas from './Pizzas'
 import pizzaItem from './Pizza'
+import auth from './Auth'
 import { rootSaga } from "./rootSaga";
 
 
@@ -17,7 +18,8 @@ export const reducer = combineReducers({
   filter,
   cart,
   pizzas,
-  pizzaItem
+  pizzaItem,
+  auth
 })
 
 export const store = configureStore({

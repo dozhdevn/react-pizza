@@ -1,11 +1,10 @@
 import React from "react";
 import {
   BrowserRouter,
-  Routes,
+  Switch,
   Route,
 } from "react-router-dom";
 import { Provider } from 'react-redux'
-import { Header } from './components/Header';
 
 import { Cart } from "./pages/Cart";
 import { Home } from './pages/Home';
@@ -15,24 +14,22 @@ import { FullPizza } from "./pages/FullPizza";
 import { store } from "./store";
 
 import './scss/app.scss';
+import { Login } from "./pages/Login";
+import { MainLayouts } from "./layouts/MainLayouts";
 
-function App() {
+const App: React.FC = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <div className="wrapper">
-          <Header />
-          <div className="content">
-            <div className="container">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path='/pizza/:id' element={<FullPizza/>}/>
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </div>
-          </div>
-        </div>
+        <Switch>
+          <Route path='/login' exact={true} component={Login} />
+          <MainLayouts>
+            <Route path='/' exact={true} component={Home} />
+            <Route path='/Cart' exact={true} component={Cart} />
+            <Route path='/pizza/:id' component={FullPizza} />
+          </MainLayouts>
+          <Route path='*' component={NotFound}/>
+        </Switch>
       </BrowserRouter>
     </Provider>
   );
