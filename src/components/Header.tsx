@@ -1,17 +1,24 @@
 import React, { useEffect, useRef } from 'react'
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom'
 import logo from '../assets/img/pizza-logo.svg'
+import { logOut } from '../store/Auth';
 import { selectCart } from '../store/Cart/selectors';
 import { Search } from './Search'
 
 export const Header: React.FC = () => {
+  const dispatch = useDispatch()
   const { items, totalPrice } = useSelector(selectCart)
   const totalCount = items.reduce((sum, item) => sum + item.count, 0)
   const isMounted = useRef(false)
 
   const { pathname } = useLocation()
   const visibleSearch = pathname === '/'
+
+  const handleLogOut = () => {
+    localStorage.removeItem('auth')
+    dispatch(logOut())
+  }
 
   useEffect(() => {
     if (isMounted.current) {
@@ -70,7 +77,10 @@ export const Header: React.FC = () => {
             </svg>
             <span>{totalCount}</span>
           </Link>
-          <Link to='/login' className='header__cart-logout'>
+          <Link 
+          to='/login' 
+          onClick={handleLogOut}
+          className='header__cart-logout'>
             <svg
               width="30"
               height="30"

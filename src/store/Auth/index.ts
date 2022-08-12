@@ -30,10 +30,14 @@ const AuthSlice = createSlice({
     setError: (state: Draft<AuthState>) => {
       state.isError = true
       state.isLoading = false
-    }
+    },
+    setIsAuth: (state: Draft<AuthState>, action: PayloadAction<boolean>) => {
+      state.isAuth = action.payload
+    },
+    logOut: (state: Draft<AuthState>) => initialState
   }
 })
 
-export const { fetchAuth, setUser, setError } = AuthSlice.actions
+export const { fetchAuth, setUser, setError, logOut, setIsAuth } = AuthSlice.actions
 
 export default AuthSlice.reducer

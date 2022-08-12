@@ -6,7 +6,7 @@ import { Login } from "../pages/Login"
 export interface IRoute {
   path: string
   exact?: true
-  element: React.FC
+  component: React.FC
 }
 
 export enum RouteNames {
@@ -18,11 +18,11 @@ export enum RouteNames {
 }
 
 export const publicRoutes: IRoute[] = [
-  {path: RouteNames.LOGIN, exact: true, element: Login}
+  {path: RouteNames.LOGIN, exact: true, component: Login}
 ]
 
 export const privateRoutes: IRoute[] = [
-  {path: RouteNames.HOME, exact: true, element: Home},
-  {path: RouteNames.CART, exact: true,  element: Cart},
-  {path: RouteNames.FULL_PIZZA,  element: FullPizza}
+  {path: RouteNames.HOME, exact: true, component: Home},
+  {path: RouteNames.CART, exact: true,  component: Cart},
+  {path: RouteNames.FULL_PIZZA,  component: FullPizza}
 ]

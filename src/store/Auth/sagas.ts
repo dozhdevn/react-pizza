@@ -12,6 +12,8 @@ function* fetchAuthRequest({payload}: ReturnType<typeof fetchAuth>){
     const response: User[] = yield call(AuthRepo.getUsers)
     const mockUser = response.find(item => item.username === username && item.password === password)
     if(mockUser) {
+      localStorage.setItem('auth', 'true')
+      localStorage.setItem('username', mockUser.username)
       yield put(setUser(mockUser))
     } else {
       yield put(setError())
