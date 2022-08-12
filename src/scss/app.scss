@@ -403,7 +403,14 @@ body {
     display: flex;
     flex-direction: column;
   }
+  &__label.error {
+    color: red
+  }
   &__input {
     margin-bottom: 15px;
+    padding: 4px;
+    outline: none;
+    border: 1px solid grey;
+    border-radius: 5px
   }
 }

@@ -1,3 +1,3 @@
 import { AppState } from "..";
 
-export const authSelector = (state: AppState) => state.auth
+export const selectAuth = (state: AppState) => state.auth

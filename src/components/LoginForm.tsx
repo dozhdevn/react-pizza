@@ -1,9 +1,13 @@
+import clsx from 'clsx'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { fetchAuth } from '../store/Auth'
-import { AuthApi } from '../store/Auth/authApi'
 
-export const LoginForm: React.FC = () => {
+interface LoginFormProps {
+  error: boolean
+}
+
+export const LoginForm: React.FC<LoginFormProps> = ({error = false}) => {
 
   const dispatch = useDispatch()
 
@@ -25,12 +29,16 @@ export const LoginForm: React.FC = () => {
     dispatch(fetchAuth({username, password}))
   }
 
+  const errorStyleLabel = clsx('login__label', {
+    error
+  })
+
   return (
     <form
       className='login__form'
       onSubmit={handleSubmit}>
       <div className="login__item">
-        <label>*Имя пользователя</label>
+        <label className={errorStyleLabel}>*Имя пользователя</label>
         <input
           className='login__input' type="text"
           onChange={handleChangeUsername}
@@ -38,14 +46,14 @@ export const LoginForm: React.FC = () => {
           required />
       </div>
       <div className="login__item">
-        <label>*Пароль</label>
+        <label className={errorStyleLabel}>*Пароль</label>
         <input
           className='login__input' type="password"
           onChange={handleChangePassword}
           value={password}
           required />
       </div>
-      <button type="submit">SIGN UP</button>
+      <button className='button button--login' type="submit">SIGN UP</button>
     </form>
   )
 }

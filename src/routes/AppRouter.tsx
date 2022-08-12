@@ -4,17 +4,17 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import { privateRoutes, publicRoutes, RouteNames } from '.'
 import { MainLayouts } from '../layouts/MainLayouts'
 import { setIsAuth } from '../store/Auth'
-import { authSelector } from '../store/Auth/selector'
+import { selectAuth } from '../store/Auth/selector'
 
 export const AppRouter: React.FC = () => {
   const dispatch = useDispatch()
-  const { isAuth } = useSelector(authSelector)
+  const { isAuth } = useSelector(selectAuth)
 
-  useEffect(()=> {
-    if(localStorage.getItem('auth')) {
+  useEffect(() => {
+    if (localStorage.getItem('auth')) {
       dispatch(setIsAuth(true))
     }
-  }, [])
+  }, [dispatch])
 
   return (
     isAuth ?
@@ -30,8 +30,8 @@ export const AppRouter: React.FC = () => {
       :
       <Switch>
         {publicRoutes.map(route =>
-            <Route key={route.path} {...route} />)}
-            <Redirect to={RouteNames.LOGIN} />
+          <Route key={route.path} {...route} />)}
+        <Redirect to={RouteNames.LOGIN} />
       </Switch>
   )
 }
