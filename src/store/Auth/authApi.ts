@@ -7,3 +7,5 @@ export class AuthApi {
     return data
   }
 }
+
+const x = 2
